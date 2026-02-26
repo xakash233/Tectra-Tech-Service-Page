@@ -1,0 +1,150 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* ========================================
+   GLOBAL BASE STYLES
+   ======================================== */
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #ffffff;
+  color: #333333;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   FOCUS STYLES — WCAG AA COMPLIANT
+   ======================================== */
+
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: 3px;
+}
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
+   SKIP LINK
+   ======================================== */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  background: #000000;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* ========================================
+   ACCORDION ANIMATION
+   ======================================== */
+
+@keyframes accordion-down {
+  from { height: 0; opacity: 0; }
+  to { height: var(--radix-accordion-content-height); opacity: 1; }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); opacity: 1; }
+  to { height: 0; opacity: 0; }
+}
+
+[data-state='open'] .accordion-content {
+  animation: accordion-down 0.2s ease-out;
+}
+
+[data-state='closed'] .accordion-content {
+  animation: accordion-up 0.2s ease-out;
+}
+
+/* ========================================
+   FORM INPUT STYLES
+   ======================================== */
+
+.form-input {
+  width: 100%;
+  background-color: #1a1a1a;
+  border: 1px solid #333333;
+  color: #ffffff;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: 'Inter', system-ui, sans-serif;
+  transition: border-color 0.15s ease;
+  outline: none;
+  appearance: none;
+}
+
+.form-input::placeholder {
+  color: #666666;
+}
+
+.form-input:focus-visible {
+  border-color: #ffffff;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.form-input.error {
+  border-color: #ff6b6b;
+}
+
+.form-input-light {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  color: #1a1a1a;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: 'Inter', system-ui, sans-serif;
+  transition: border-color 0.15s ease;
+  outline: none;
+  appearance: none;
+}
+
+.form-input-light::placeholder {
+  color: #999999;
+}
+
+.form-input-light:focus-visible {
+  border-color: #000000;
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+}
