@@ -70,7 +70,7 @@ export function StickyForm() {
                                 <input
                                     id="fullName"
                                     type="text"
-                                    placeholder="e.g. Dr. Rajesh Sharma"
+                                    placeholder="Your Full Name"
                                     className={`w-full h-10 px-4 rounded-xl bg-gray-50/50 border transition-all duration-300 outline-none focus:bg-white text-xs ${errors.fullName ? 'border-red-200 focus:border-red-400 ring-2 ring-red-50' : 'border-gray-200 focus:border-gray-900 ring-2 ring-transparent focus:ring-gray-100 text-gray-900 placeholder:text-gray-400'}`}
                                     {...register('fullName', { required: 'Name is required' })}
                                 />
