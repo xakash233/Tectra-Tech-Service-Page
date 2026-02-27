@@ -61,7 +61,7 @@ const employees = [
   },
   {
     name: "Shaffna",
-    designation: "Quality Assurance",
+    designation: "Mobile App Developer",
     quote: "Ensuring every digital touchpoint is flawless and reliable.",
     bio: "Shaffna meticulously tests our platforms to guarantee a seamless, bug-free experience for every student and parent visiting your site.",
     image: "/employee/Shaffna QA.png"
@@ -121,18 +121,18 @@ export function Founder() {
       {/* Tech Grid Background */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
 
-      <div className="max-w-6xl mx-auto relative">
+      <div className="max-w-5xl mx-auto relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <p className="text-gray-400 uppercase tracking-[0.2em] text-sm font-bold mb-4">Core Team</p>
-          <h2 className="text-[#1a1a1a] font-black text-4xl md:text-5xl tracking-tighter">The Minds Behind Your Growth</h2>
+          <p className="text-gray-400 uppercase tracking-[0.2em] text-xs font-bold mb-2">Core Team</p>
+          <h2 className="text-[#1a1a1a] font-black text-3xl md:text-4xl tracking-tighter">The Minds Behind Your Growth</h2>
         </motion.div>
 
-        <div className="relative min-h-[600px] flex items-center">
+        <div className="relative min-h-[400px] md:min-h-[480px] flex items-center">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentIndex}
@@ -146,36 +146,36 @@ export function Founder() {
                 opacity: { duration: 0.4 },
                 scale: { duration: 0.4 }
               }}
-              className="w-full flex flex-col md:flex-row items-stretch bg-white rounded-[3rem] border border-gray-100 shadow-2xl overflow-hidden"
+              className="w-full flex flex-col md:flex-row items-center bg-white rounded-[2.5rem] border border-gray-100 shadow-xl overflow-hidden"
             >
               {/* Image Section with Hover Reveal */}
-              <div className="w-full md:w-[45%] relative group/img overflow-hidden bg-gray-50">
+              <div className="w-full md:w-[40%] relative group/img overflow-hidden bg-gray-50 h-[300px] md:h-[480px]">
                 <motion.img
-                  initial={{ scale: 1.2 }}
+                  initial={{ scale: 1.1 }}
                   animate={{ scale: 1 }}
                   src={current.image}
                   alt={current.name}
-                  className="w-full h-full object-cover min-h-[400px] md:min-h-[600px] transition-transform duration-1000 group-hover/img:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
 
               {/* Content Section */}
-              <div className="flex-1 p-8 md:p-14 flex flex-col justify-center relative">
-                <div className="space-y-6">
+              <div className="flex-1 p-6 md:p-10 flex flex-col justify-center relative">
+                <div className="space-y-4">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     className="flex items-center gap-3"
                   >
-                    <div className="h-0.5 w-8 bg-black"></div>
-                    <span className="text-black font-black text-xs uppercase tracking-widest">{current.designation}</span>
+                    <div className="h-0.5 w-6 bg-black"></div>
+                    <span className="text-black font-black text-[10px] uppercase tracking-widest">{current.designation}</span>
                   </motion.div>
 
                   <motion.h3
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-[#1a1a1a] font-black text-5xl md:text-6xl tracking-tighter mb-4"
+                    className="text-[#1a1a1a] font-black text-4xl md:text-5xl tracking-tighter mb-2"
                   >
                     {current.name}
                   </motion.h3>
@@ -184,10 +184,10 @@ export function Founder() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="relative py-6"
+                    className="relative py-4"
                   >
-                    <Quote size={48} className="absolute -left-6 -top-2 opacity-5 text-black" />
-                    <p className="text-[#1a1a1a] font-extrabold text-2xl md:text-3xl italic leading-tight">
+                    <Quote size={32} className="absolute -left-4 -top-1 opacity-5 text-black" />
+                    <p className="text-[#1a1a1a] font-extrabold text-xl md:text-2xl italic leading-tight">
                       "{current.quote}"
                     </p>
                   </motion.div>
@@ -196,7 +196,7 @@ export function Founder() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="text-gray-500 font-medium text-lg max-w-lg leading-relaxed"
+                    className="text-gray-500 font-medium text-sm max-w-lg leading-relaxed"
                   >
                     {current.bio}
                   </motion.p>
@@ -205,11 +205,11 @@ export function Founder() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
-                    className="pt-8"
+                    className="pt-4"
                   >
-                    <a href="#contact" className="inline-flex items-center gap-3 bg-[#1a1a1a] text-white px-10 py-5 rounded-2xl font-black text-sm hover:bg-black transition-all hover:shadow-xl hover:-translate-y-1 group">
+                    <a href="#contact" className="inline-flex items-center gap-2.5 bg-[#1a1a1a] text-white px-8 py-3.5 rounded-xl font-black text-xs hover:bg-black transition-all hover:shadow-lg hover:-translate-y-1 group">
                       Connect with {current.name}
-                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </a>
                   </motion.div>
                 </div>
@@ -218,32 +218,32 @@ export function Founder() {
           </AnimatePresence>
 
           {/* Floating Controls */}
-          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 md:-left-8 md:top-1/2 md:-translate-y-1/2 md:translate-x-0 md:bottom-auto flex md:flex-col gap-4 z-20">
+          <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 md:-left-6 md:top-1/2 md:-translate-y-1/2 md:translate-x-0 md:bottom-auto flex md:flex-col gap-3 z-20">
             <button
               onClick={handlePrev}
-              className="w-14 h-14 bg-black text-white rounded-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-xl"
+              className="w-12 h-12 bg-black text-white rounded-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-lg"
             >
-              <ChevronLeft size={24} />
+              <ChevronLeft size={20} />
             </button>
             <button
               onClick={handleNext}
-              className="w-14 h-14 bg-black text-white rounded-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-xl"
+              className="w-12 h-12 bg-black text-white rounded-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-lg"
             >
-              <ChevronRight size={24} />
+              <ChevronRight size={20} />
             </button>
           </div>
         </div>
 
-        {/* Thumbnail Progress Bar */}
-        <div className="flex flex-wrap justify-center gap-3 mt-16 max-w-2xl mx-auto px-4">
+        {/* Thumbnail Progress Bar - More compact */}
+        <div className="flex flex-wrap justify-center gap-2 mt-12 max-w-xl mx-auto px-4">
           {employees.map((emp, i) => (
             <button
               key={emp.name}
               onClick={() => setIndex(i)}
-              className={`relative overflow-hidden group h-12 rounded-xl transition-all duration-500 ${currentIndex === i ? 'w-24' : 'w-12 opacity-40 hover:opacity-100'}`}
+              className={`relative overflow-hidden group h-10 rounded-lg transition-all duration-500 ${currentIndex === i ? 'w-20' : 'w-10 opacity-40 hover:opacity-100'}`}
             >
               <img src={emp.image} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-              <div className={`absolute inset-0 border-2 rounded-xl transition-colors ${currentIndex === i ? 'border-black' : 'border-transparent'}`}></div>
+              <div className={`absolute inset-0 border-2 rounded-lg transition-colors ${currentIndex === i ? 'border-black' : 'border-transparent'}`}></div>
             </button>
           ))}
         </div>

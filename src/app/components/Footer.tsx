@@ -32,12 +32,12 @@ export function Footer() {
             <a
               href="/"
               aria-label="Tectra Technologies – Home"
-              className="mb-4 inline-block bg-white p-2 rounded-md"
+              className="mb-4 inline-block"
             >
               <img
                 src="/tectra-logo-black.png"
                 alt="Tectra Technologies"
-                className="h-8 w-auto"
+                className="h-8 w-auto invert"
               />
             </a>
             <p
