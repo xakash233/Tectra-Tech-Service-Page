@@ -5,10 +5,11 @@ export function Lead101Widget() {
     const widgetCode = import.meta.env.VITE_LEAD101_WIDGET_CODE || 'EA06E8D59DC3';
 
     useEffect(() => {
-        if (!containerRef.current) return;
+        const container = containerRef.current;
+        if (!container) return;
 
         // Clear previous content
-        containerRef.current.innerHTML = '';
+        container.innerHTML = '';
 
         const script = document.createElement('script');
         script.src = `https://thelead101.com/widgets/${widgetCode}/widget.js`;
@@ -22,11 +23,11 @@ export function Lead101Widget() {
         script.async = true;
 
         // Append inside the specific div
-        containerRef.current.appendChild(script);
+        container.appendChild(script);
 
         return () => {
-            if (containerRef.current) {
-                containerRef.current.innerHTML = '';
+            if (container) {
+                container.innerHTML = '';
             }
         };
     }, [widgetCode]);

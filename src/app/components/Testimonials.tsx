@@ -57,7 +57,7 @@ export function Testimonials() {
       aria-labelledby="testimonials-heading"
       className="bg-white py-12 md:py-16"
     >
-      <div className="max-w-[1100px] mx-auto px-6">
+      <div className="w-full">
         {/* Section header */}
         <div className="max-w-[680px] mb-8 md:mb-12">
           <p
@@ -77,7 +77,7 @@ export function Testimonials() {
 
         {/* Testimonial grid */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-[#e5e5e5]"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           role="list"
           aria-label="Client testimonials"
         >
@@ -85,7 +85,7 @@ export function Testimonials() {
             <blockquote
               key={id}
               role="listitem"
-              className="border-b border-r border-[#e5e5e5] p-7 md:p-8 flex flex-col"
+              className="rounded-[2.5rem] border border-gray-100 bg-white p-7 md:p-8 flex flex-col hover:shadow-xl transition-all hover:-translate-y-1"
             >
               {/* Star Rating */}
               <div className="flex gap-0.5 mb-4" aria-hidden="true">

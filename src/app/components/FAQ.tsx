@@ -24,20 +24,20 @@ export function FAQ() {
         Everything you need to know about our education-focused digital marketing solutions.
       </p>
 
-      <div className="w-full max-w-3xl mx-auto flex flex-col gap-4">
+      <div className="w-full flex flex-col gap-4">
         {faqs.map((faq, index) => {
           const isOpen = openIndex === index;
           return (
             <div
               key={index}
-              className={`border-b border-gray-100 transition-all ${isOpen ? 'py-6 px-0' : 'py-4 px-0 cursor-pointer'} group`}
+              className={`rounded-2xl border border-gray-100 mb-3 transition-all ${isOpen ? 'bg-[#fafafa] shadow-md' : 'bg-white hover:bg-gray-50 cursor-pointer'} group`}
             >
               <button
-                className="w-full flex items-center justify-between text-left focus:outline-none"
+                className="w-full flex items-center justify-between text-left focus:outline-none p-5"
                 onClick={() => setOpenIndex(isOpen ? -1 : index)}
               >
                 <div className="flex items-center gap-4">
-                  <span className="w-6 h-6 rounded-md bg-[#1a1a1a] text-white flex items-center justify-center text-xs font-bold leading-none shrink-0 group-hover:scale-105 transition-transform">
+                  <span className="w-8 h-8 rounded-xl bg-[#1a1a1a] text-white flex items-center justify-center text-xs font-bold leading-none shrink-0 group-hover:scale-105 transition-transform">
                     {index + 1}
                   </span>
                   <span className={`font-bold transition-colors ${isOpen ? 'text-[#1a1a1a] text-lg' : 'text-gray-800 text-base group-hover:text-black'}`}>
@@ -52,7 +52,7 @@ export function FAQ() {
               </button>
 
               <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out pl-10 ${isOpen ? 'max-h-48 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}
+                className={`overflow-hidden transition-all duration-300 ease-in-out pl-12 pr-6 ${isOpen ? 'max-h-48 opacity-100 pb-6' : 'max-h-0 opacity-0 pb-0'}`}
               >
                 <p className="text-gray-500 text-sm md:text-[15px] leading-relaxed font-medium">
                   {faq.answer}

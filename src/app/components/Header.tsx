@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { X, ChevronDown } from 'lucide-react';
 
 const navLinks = [
   { label: 'Company', href: '#company' },
@@ -55,7 +55,7 @@ export function Header() {
         }`}
       role="banner"
     >
-      <div className="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div className="max-w-[1230px] mx-auto px-6">
         <div className="flex items-center justify-between h-[72px]">
           {/* Logo */}
           <a
@@ -113,7 +113,9 @@ export function Header() {
 
           {/* Desktop CTA */}
           <a
-            href="#contact"
+            href="https://calendly.com/d/ctnd-5kd-yzk/1-1-scale-your-business"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:inline-flex items-center justify-center bg-black text-white px-6 min-h-[44px] hover:bg-[#1a1a1a] transition-colors duration-150 text-[15px] shrink-0"
             style={{ fontWeight: 600 }}
           >
@@ -190,7 +192,9 @@ export function Header() {
           ))}
           <div className="py-4">
             <a
-              href="#contact"
+              href="https://calendly.com/d/ctnd-5kd-yzk/1-1-scale-your-business"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setIsMenuOpen(false)}
               className="flex items-center justify-center bg-black text-white w-full min-h-[48px] hover:bg-[#1a1a1a] transition-colors"
               style={{ fontWeight: 600 }}

@@ -15,21 +15,17 @@ export function StickyForm() {
         register,
         handleSubmit,
         formState: { errors, isSubmitting, isSubmitSuccessful },
-        reset,
     } = useForm<FormData>({ mode: 'onBlur' });
 
     const onSubmit = async (data: FormData) => {
         // Simulate async submission
         await new Promise((resolve) => setTimeout(resolve, 800));
         console.log('Form submitted:', data);
-
-        // Redirect to Calendly
-        window.open('https://calendly.com/heyswuu/new-meeting', '_blank');
-        reset();
+        // Form stays on success state which shows Calendly
     };
 
     return (
-        <div className="bg-white w-full p-5 sm:p-6 rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col relative overflow-hidden mt-0 lg:-ml-4 scale-[0.98]">
+        <div className="bg-white w-full p-5 sm:p-6 rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col relative overflow-hidden mt-0 lg:-mt-6 lg:-ml-4 scale-[0.98]">
             {/* Trendy decorative background blobs */}
             <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-gradient-to-br from-gray-100 to-transparent blur-3xl opacity-60 pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-gradient-to-tr from-gray-50 to-transparent blur-3xl opacity-60 pointer-events-none"></div>
@@ -41,22 +37,24 @@ export function StickyForm() {
                         <span className="text-[10px] font-bold tracking-widest uppercase text-gray-600">Get Started</span>
                     </div>
                     <h2 className="text-[#1a1a1a] font-black text-2xl tracking-tight leading-[1.1]">
-                        Ready to Increase Admissions?
+                        {isSubmitSuccessful ? "Schedule Your Call" : "Ready to Increase Admissions?"}
                     </h2>
                     <p className="text-gray-500 text-[11px] leading-relaxed font-medium">
-                        Book a free strategy consultation. We'll audit your current digital presence at no cost.
+                        {isSubmitSuccessful
+                            ? "Please select a time that works best for your team."
+                            : "Book a free strategy consultation. We'll audit your current digital presence at no cost."}
                     </p>
                 </div>
 
                 {isSubmitSuccessful ? (
-                    <div className="text-center py-12 animate-in fade-in duration-700">
-                        <div className="w-14 h-14 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-inner">
-                            <span className="text-xl font-bold">✓</span>
-                        </div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-1">Consultation Booked</h3>
-                        <p className="text-gray-500 text-xs px-6 leading-relaxed font-medium">
-                            Thank you. Our senior strategist will be in touch within 24 hours.
-                        </p>
+                    <div className="w-full h-[550px] animate-in fade-in zoom-in duration-500">
+                        <iframe
+                            src="https://calendly.com/d/ctnd-5kd-yzk/1-1-scale-your-business?hide_event_type_details=1&hide_gdpr_banner=1"
+                            width="100%"
+                            height="100%"
+                            frameBorder="0"
+                            title="Schedule Strategy Call"
+                        ></iframe>
                     </div>
                 ) : (
                     <form
@@ -64,9 +62,9 @@ export function StickyForm() {
                         noValidate
                         className="flex flex-col gap-4 relative"
                     >
-                        <div className="space-y-3">
-                            <div className="relative group">
-                                <label htmlFor="fullName" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight">Full Name</label>
+                        <div className="flex flex-col">
+                            <div className="relative group pb-4">
+                                <label htmlFor="fullName" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight font-sans">Full Name</label>
                                 <input
                                     id="fullName"
                                     type="text"
@@ -74,11 +72,11 @@ export function StickyForm() {
                                     className={`w-full h-10 px-4 rounded-xl bg-gray-50/50 border transition-all duration-300 outline-none focus:bg-white text-xs ${errors.fullName ? 'border-red-200 focus:border-red-400 ring-2 ring-red-50' : 'border-gray-200 focus:border-gray-900 ring-2 ring-transparent focus:ring-gray-100 text-gray-900 placeholder:text-gray-400'}`}
                                     {...register('fullName', { required: 'Name is required' })}
                                 />
-                                {errors.fullName && <p className="text-red-500 text-[10px] font-medium mt-1 ml-1">{errors.fullName.message}</p>}
+                                {errors.fullName && <p className="absolute left-1 bottom-0 text-red-500 text-[10px] font-medium leading-none">{errors.fullName.message}</p>}
                             </div>
 
-                            <div className="relative group">
-                                <label htmlFor="institutionName" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight">Institution Name</label>
+                            <div className="relative group pb-4">
+                                <label htmlFor="institutionName" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight font-sans">Institution Name</label>
                                 <input
                                     id="institutionName"
                                     type="text"
@@ -86,11 +84,11 @@ export function StickyForm() {
                                     className={`w-full h-10 px-4 rounded-xl bg-gray-50/50 border transition-all duration-300 outline-none focus:bg-white text-xs ${errors.institutionName ? 'border-red-200 focus:border-red-400 ring-2 ring-red-50' : 'border-gray-200 focus:border-gray-900 ring-2 ring-transparent focus:ring-gray-100 text-gray-900 placeholder:text-gray-400'}`}
                                     {...register('institutionName', { required: 'Institution is required' })}
                                 />
-                                {errors.institutionName && <p className="text-red-500 text-[10px] font-medium mt-1 ml-1">{errors.institutionName.message}</p>}
+                                {errors.institutionName && <p className="absolute left-1 bottom-0 text-red-500 text-[10px] font-medium leading-none">{errors.institutionName.message}</p>}
                             </div>
 
-                            <div className="relative group">
-                                <label htmlFor="email" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight">Work Email</label>
+                            <div className="relative group pb-4">
+                                <label htmlFor="email" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight font-sans">Work Email</label>
                                 <input
                                     id="email"
                                     type="email"
@@ -101,11 +99,11 @@ export function StickyForm() {
                                         pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Valid email required' }
                                     })}
                                 />
-                                {errors.email && <p className="text-red-500 text-[10px] font-medium mt-1 ml-1">{errors.email.message}</p>}
+                                {errors.email && <p className="absolute left-1 bottom-0 text-red-500 text-[10px] font-medium leading-none">{errors.email.message}</p>}
                             </div>
 
-                            <div className="relative group">
-                                <label htmlFor="phone" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight">Phone Number</label>
+                            <div className="relative group pb-4">
+                                <label htmlFor="phone" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight font-sans">Phone Number</label>
                                 <input
                                     id="phone"
                                     type="tel"
@@ -113,19 +111,19 @@ export function StickyForm() {
                                     className={`w-full h-10 px-4 rounded-xl bg-gray-50/50 border transition-all duration-300 outline-none focus:bg-white text-xs ${errors.phone ? 'border-red-200 focus:border-red-400 ring-2 ring-red-50' : 'border-gray-200 focus:border-gray-900 ring-2 ring-transparent focus:ring-gray-100 text-gray-900 placeholder:text-gray-400'}`}
                                     {...register('phone', { required: 'Phone is required' })}
                                 />
-                                {errors.phone && <p className="text-red-500 text-[10px] font-medium mt-1 ml-1">{errors.phone.message}</p>}
+                                {errors.phone && <p className="absolute left-1 bottom-0 text-red-500 text-[10px] font-medium leading-none">{errors.phone.message}</p>}
                             </div>
 
-                            <div className="relative group">
-                                <label htmlFor="message" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight">Your Message</label>
+                            <div className="relative group pb-4">
+                                <label htmlFor="message" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight font-sans">Your Message</label>
                                 <textarea
                                     id="message"
                                     placeholder="Which programmes do you want to grow?"
-                                    rows={3}
+                                    rows={2}
                                     className={`w-full px-4 py-3 rounded-xl bg-gray-50/50 border transition-all duration-300 outline-none focus:bg-white text-xs resize-none ${errors.message ? 'border-red-200 focus:border-red-400 ring-2 ring-red-50' : 'border-gray-200 focus:border-gray-900 ring-2 ring-transparent focus:ring-gray-100 text-gray-900 placeholder:text-gray-400'}`}
                                     {...register('message', { required: 'Message is required' })}
                                 />
-                                {errors.message && <p className="text-red-500 text-[10px] font-medium mt-1 ml-1">{errors.message.message}</p>}
+                                {errors.message && <p className="absolute left-1 bottom-0 text-red-500 text-[10px] font-medium leading-none">{errors.message.message}</p>}
                             </div>
                         </div>
 

@@ -57,9 +57,8 @@ export function Stats() {
 
       {/* Pill header */}
       <Reveal>
-        <div className="inline-block border border-[#1a1a1a] rounded-full px-8 py-2 mb-12 shadow-sm relative group cursor-default">
-          <div className="absolute inset-0 bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 rounded-full -z-10"></div>
-          <h3 className="text-[#1a1a1a] group-hover:text-white transition-colors font-bold text-base tracking-wide">Numbers that Speak</h3>
+        <div className="inline-block border border-black rounded-full px-8 py-2 mb-12 shadow-sm bg-black">
+          <h3 className="text-white font-bold text-base tracking-wide">Numbers that Speak</h3>
         </div>
       </Reveal>
 
@@ -68,7 +67,7 @@ export function Stats() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="max-w-7xl mx-auto w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+        className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
       >
         {stats.map((stat, i) => (
           <motion.div
@@ -80,11 +79,11 @@ export function Stats() {
             <div className="mb-4 text-[#1a1a1a] group-hover:scale-110 transition-transform origin-left">
               {stat.icon}
             </div>
-            <div className="flex items-baseline gap-1 mb-1 relative z-10">
-              <span className="text-3xl font-extrabold text-[#1a1a1a] tracking-tight">{stat.value}</span>
-              <span className="text-sm font-bold text-[#1a1a1a]">{stat.suffix}</span>
+            <div className="flex flex-col mb-1 relative z-10">
+              <span className="text-2xl md:text-xl font-extrabold text-[#1a1a1a] tracking-tight leading-none">{stat.value}</span>
+              <span className="text-xs font-bold text-[#1a1a1a]">{stat.suffix}</span>
             </div>
-            <p className="text-xs text-gray-500 font-medium leading-relaxed max-w-[120px] relative z-10">
+            <p className="text-[10px] text-gray-500 font-medium leading-tight relative z-10">
               {stat.label}
             </p>
           </motion.div>

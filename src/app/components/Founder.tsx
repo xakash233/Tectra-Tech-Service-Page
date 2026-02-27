@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, Quote, Instagram, Linkedin } from 'lucide-react';
 
 const employees = [
   {
@@ -8,7 +8,11 @@ const employees = [
     designation: "Senior Marketing Consultant",
     quote: "Helping Educational Institutions Succeed is my Passion and Mission.",
     bio: "Nikita is a dynamic marketing strategist specializing in the education sector, driving student enrollment growth through custom digital campaigns.",
-    image: "/employee/Nikita senior marketing consulting.png"
+    image: "/employee/Nikita senior marketing consulting.png",
+    profileUrl: "https://www.linkedin.com/in/nikitakharche/",
+    socials: [
+      { platform: "linkedin", url: "https://www.linkedin.com/in/nikitakharche/" }
+    ]
   },
   {
     name: "Harikaran",
@@ -205,12 +209,33 @@ export function Founder() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
-                    className="pt-4"
+                    className="pt-4 flex flex-col sm:flex-row items-center gap-4"
                   >
-                    <a href="#contact" className="inline-flex items-center gap-2.5 bg-[#1a1a1a] text-white px-8 py-3.5 rounded-xl font-black text-xs hover:bg-black transition-all hover:shadow-lg hover:-translate-y-1 group">
+                    <a
+                      href={current.profileUrl || "#contact"}
+                      target={current.profileUrl ? "_blank" : undefined}
+                      rel={current.profileUrl ? "noopener noreferrer" : undefined}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#1a1a1a] text-white px-8 py-3.5 rounded-xl font-black text-xs hover:bg-black transition-all hover:shadow-lg hover:-translate-y-1 group"
+                    >
                       Connect with {current.name}
                       <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </a>
+
+                    {current.socials && (
+                      <div className="flex items-center gap-3">
+                        {current.socials.map((social, idx) => (
+                          <a
+                            key={idx}
+                            href={social.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-11 h-11 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-400 hover:text-black hover:border-black transition-all hover:scale-110"
+                          >
+                            {social.platform === 'instagram' ? <Instagram size={18} /> : <Linkedin size={18} />}
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </motion.div>
                 </div>
               </div>

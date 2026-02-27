@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 import { Reveal } from './ui/Reveal';
 
 interface Institution {
@@ -20,43 +19,62 @@ const institutions: Institution[] = [
 ];
 
 export function TrustStrip() {
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Duplicate logos for seamless scrolling
+  const allLogos = [...institutions, ...institutions];
+
   return (
     <section
       aria-label="Trusted by leading institutions"
-      className="border-y border-[#e5e5e5] bg-[#F5F5F5] py-16"
+      className="bg-white py-12 overflow-hidden"
     >
-      <div className="max-w-[1200px] mx-auto px-6">
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .marquee-container {
+          display: flex;
+          width: max-content;
+          animation: marquee 40s linear infinite;
+        }
+        .marquee-paused {
+          animation-play-state: paused;
+        }
+      `}</style>
+
+      <div className="relative z-10 max-w-[1230px] mx-auto px-6 mb-8">
         <Reveal>
           <p
-            className="text-center text-[#666666] text-base md:text-lg tracking-widest uppercase mb-12"
-            style={{ fontWeight: 700, letterSpacing: '0.12em' }}
+            className="text-center text-black text-[14px] md:text-[15px] tracking-[0.3em] uppercase"
+            style={{ fontWeight: 900 }}
           >
-            Trusted by Leading Institutions
+            Our Trusted Institutional Partners
           </p>
         </Reveal>
+      </div>
 
+      <div
+        className="relative flex overflow-hidden py-4"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
         <div
-          className="flex flex-wrap items-center justify-center gap-10 sm:gap-16 md:gap-20 lg:gap-24"
-          role="list"
-          aria-label="Client institutions"
+          className={`marquee-container ${isPaused ? 'marquee-paused' : ''} flex flex-nowrap items-center gap-12 md:gap-20 px-10`}
         >
-          {institutions.map((inst, i) => (
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              key={inst.name}
-              role="listitem"
-              className="group flex items-center justify-center cursor-pointer perspective-1000"
+          {allLogos.map((inst, i) => (
+            <div
+              key={`${inst.name}-${i}`}
+              className="flex items-center justify-center grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300 transform hover:scale-110 flex-shrink-0"
             >
               <img
                 src={inst.logo}
                 alt={inst.name}
-                style={{ transform: inst.scale ? `scale(${inst.scale})` : undefined }}
-                className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-16 w-auto object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:!scale-[1.1] drop-shadow-sm"
+                style={{ transform: inst.scale ? `scale(${inst.scale * 1.1})` : 'scale(1.1)' }}
+                className="h-10 md:h-14 w-auto object-contain"
               />
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

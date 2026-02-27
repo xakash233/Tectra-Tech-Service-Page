@@ -4,9 +4,10 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "vite build",
-    "dev": "vite",
-    "lint": "eslint ."
+    "build": "vite build || say faahh",
+    "dev": "vite || say faahh",
+    "lint": "eslint . || say faahh",
+    "faahh": "say faahh"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

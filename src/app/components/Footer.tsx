@@ -1,5 +1,18 @@
 import React from 'react';
-import { MapPin, ArrowRight } from 'lucide-react';
+import { MapPin, ArrowRight, Linkedin, Instagram } from 'lucide-react';
+
+// Custom X (formerly Twitter) icon component
+const XIcon = ({ size = 20 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.292 19.494h2.039L6.486 3.24H4.298l13.311 17.407z" />
+  </svg>
+);
 
 const footerNav = {
   services: [
@@ -25,7 +38,7 @@ export function Footer() {
       aria-label="Site footer"
     >
       {/* Main footer content */}
-      <div className="max-w-[1100px] mx-auto px-6 pt-16 pb-12">
+      <div className="max-w-[1230px] mx-auto px-6 pt-16 pb-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand column */}
           <div className="sm:col-span-2 lg:col-span-1">
@@ -141,23 +154,56 @@ export function Footer() {
 
       {/* Footer bottom bar */}
       <div className="border-t border-[#111111]">
-        <div className="max-w-[1100px] mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p
-            className="text-[#444444] text-center sm:text-left"
-            style={{ fontSize: '0.8125rem' }}
-          >
-            © {new Date().getFullYear()} Tectra Technologies. All rights reserved.
-          </p>
-          <nav aria-label="Legal navigation">
-            <ul className="flex items-center gap-5">
-              <li key="privacy">
-                <a href="#privacy" className="text-[#444444] hover:text-white transition-colors" style={{ fontSize: '0.8125rem' }}>Privacy Policy</a>
-              </li>
-              <li key="terms">
-                <a href="#terms" className="text-[#444444] hover:text-white transition-colors" style={{ fontSize: '0.8125rem' }}>Terms of Service</a>
-              </li>
-            </ul>
-          </nav>
+        <div className="max-w-[1230px] mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+            <p
+              className="text-[#444444] text-center sm:text-left"
+              style={{ fontSize: '0.8125rem' }}
+            >
+              © {new Date().getFullYear()} Tectra Technologies. All rights reserved.
+            </p>
+            <nav aria-label="Legal navigation">
+              <ul className="flex items-center gap-5">
+                <li key="privacy">
+                  <a href="#privacy" className="text-[#444444] hover:text-white transition-colors" style={{ fontSize: '0.8125rem' }}>Privacy Policy</a>
+                </li>
+                <li key="terms">
+                  <a href="#terms" className="text-[#444444] hover:text-white transition-colors" style={{ fontSize: '0.8125rem' }}>Terms of Service</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex items-center gap-6">
+            <a
+              href="https://www.linkedin.com/company/tectra-technologies/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#999999] hover:text-[#0077b5] transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={20} />
+            </a>
+            <a
+              href="https://x.com/TectraL"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#999999] hover:text-white transition-colors"
+              aria-label="X (formerly Twitter)"
+            >
+              <XIcon size={18} />
+            </a>
+            <a
+              href="https://www.instagram.com/tectratechnologies"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#999999] hover:text-[#e4405f] transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram size={20} />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

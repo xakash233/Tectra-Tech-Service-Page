@@ -20,7 +20,7 @@ export function Hero() {
         className="absolute -top-24 -right-24 w-96 h-96 bg-black/10 blur-[100px] rounded-full pointer-events-none"
       ></motion.div>
 
-      <div className="max-w-[1100px] mx-auto px-6 relative z-10">
+      <div className="relative z-10 w-full">
         <div className="max-w-[780px]">
           {/* Eyebrow */}
           <Reveal>
@@ -63,7 +63,9 @@ export function Hero() {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="#contact"
+              href="https://calendly.com/d/ctnd-5kd-yzk/1-1-scale-your-business"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center bg-black text-white px-8 min-h-[52px] hover:bg-[#1a1a1a] transition-colors duration-150 gap-2 font-bold"
               style={{ fontSize: '1rem' }}
             >

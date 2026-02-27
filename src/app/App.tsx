@@ -11,15 +11,12 @@ import { Testimonials } from './components/Testimonials';
 import { VideoSection } from './components/VideoSection';
 import { Founder } from './components/Founder';
 import { FAQ } from './components/FAQ';
-import { FinalCTA } from './components/FinalCTA';
 import { StickyForm } from './components/StickyForm';
 import { Footer } from './components/Footer';
-import { CustomCursor } from './components/ui/CustomCursor';
 
 export default function App() {
   return (
-    <div className="flex flex-col min-h-screen md:cursor-none">
-      <CustomCursor />
+    <div className="flex flex-col min-h-screen">
       {/* Skip to main content – screen reader / keyboard accessibility */}
       <a href="#main-content" className="skip-link sr-only focus:not-sr-only">
         Skip to main content
@@ -27,26 +24,33 @@ export default function App() {
 
       <Header />
 
-      <main id="main-content" tabIndex={-1} className="flex-1 flex flex-col lg:flex-row relative max-w-[1920px] mx-auto w-full">
-        {/* Left Main Content - 70% */}
-        <div className="w-full lg:w-[70%] flex-1 bg-white">
-          <Hero />
-          <TrustStrip />
-          <Problem />
-          <Solutions />
-          <Stats />
-          <CaseStudies />
-          <GrowthFramework />
-          <Testimonials />
-          <VideoSection />
-          <Founder />
-          <FAQ />
+      <main id="main-content" tabIndex={-1} className="flex-1 max-w-[1230px] mx-auto w-full px-6 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12 items-start">
+          {/* Left Main Content */}
+          <div className="bg-white min-w-0">
+            <Hero />
+            <TrustStrip />
+            <Problem />
+            <Solutions />
+            <Stats />
+            <CaseStudies />
+            <GrowthFramework />
+            <Testimonials />
+            <VideoSection />
+            <Founder />
+            <FAQ />
+          </div>
+
+          {/* Right Sticky Form */}
+          <aside className="hidden lg:block sticky top-[80px] h-max z-40">
+            <StickyForm />
+          </aside>
         </div>
 
-        {/* Right Sticky Form - 30% floating */}
-        <aside className="w-full lg:w-[30%] lg:sticky lg:top-[72px] h-max bg-transparent flex-shrink-0 z-40 p-5 lg:p-0 lg:pr-2 mb-2">
+        {/* Mobile Sticky Form - only visible on small screens at the bottom or inline */}
+        <div className="lg:hidden mt-12">
           <StickyForm />
-        </aside>
+        </div>
       </main>
 
       {/* Contact anchor at the very bottom */}

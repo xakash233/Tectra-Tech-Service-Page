@@ -38,12 +38,12 @@ export function GrowthFramework() {
     <section
       id="process"
       aria-labelledby="framework-heading"
-      className="bg-[#F5F5F5] py-12 md:py-16 relative overflow-hidden"
+      className="bg-[#F5F5F5] py-12 md:py-16 px-6 relative overflow-hidden"
     >
       {/* tech grid background */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
 
-      <div className="max-w-[1100px] mx-auto px-6 relative z-10">
+      <div className="relative z-10 w-full md:pl-8">
         {/* Section header */}
         <div className="max-w-[680px] mb-8 md:mb-12">
           <Reveal>
@@ -75,7 +75,7 @@ export function GrowthFramework() {
         </div>
 
         {/* Steps */}
-        <ol className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-l border-[#d0d0d0]" aria-label="Growth framework steps">
+        <ol className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10" aria-label="Growth framework steps">
           {steps.map(({ number, title, description, deliverable }, i) => (
             <motion.li
               initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
@@ -83,7 +83,7 @@ export function GrowthFramework() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               key={number}
-              className="border-b border-r border-[#d0d0d0] bg-white p-8 md:p-10 group hover:bg-gray-50 transition-colors"
+              className="rounded-[2rem] border border-gray-100 bg-white p-8 md:p-10 group hover:bg-gray-50 transition-all hover:shadow-xl hover:-translate-y-1"
             >
               <div className="flex items-start justify-between gap-4 mb-6">
                 <span

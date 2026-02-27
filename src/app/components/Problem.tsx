@@ -40,7 +40,7 @@ export function Problem() {
       {/* Subtle tech grid background */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}></div>
 
-      <div className="max-w-[1100px] mx-auto px-6 relative z-10">
+      <div className="relative z-10 w-full">
         <div className="max-w-[680px] mb-8 md:mb-12">
           <Reveal>
             <p
@@ -70,7 +70,7 @@ export function Problem() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-l border-[#e5e5e5]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
           {problems.map(({ icon: Icon, title, description }, i) => (
             <motion.div
               initial={{ opacity: 0 }}
@@ -78,11 +78,11 @@ export function Problem() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               key={title}
-              className="border-b border-r border-[#e5e5e5] p-8 md:p-10 group hover:bg-gray-50 transition-colors"
+              className="rounded-[2.5rem] border border-gray-100 p-8 md:p-10 bg-white group hover:bg-gray-50 transition-all hover:shadow-xl hover:-translate-y-1"
             >
               <motion.div
                 whileHover={{ rotate: 10, scale: 1.1 }}
-                className="w-11 h-11 flex items-center justify-center border border-[#e5e5e5] mb-6 bg-white group-hover:border-black group-hover:bg-black group-hover:text-white transition-all transform"
+                className="w-12 h-12 flex items-center justify-center rounded-xl border border-gray-100 mb-6 bg-white group-hover:bg-black group-hover:text-white transition-all transform"
                 aria-hidden="true"
               >
                 <Icon size={20} className="transition-colors" />

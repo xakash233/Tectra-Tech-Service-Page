@@ -65,9 +65,7 @@ export function Solutions() {
   ];
 
   return (
-    <section id="services" className="bg-[#fafafa] py-12 px-6 flex flex-col items-center relative overflow-hidden">
-      {/* Background tech mesh */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+    <section id="services" className="bg-white py-12 px-6 flex flex-col items-center relative overflow-hidden">
 
       <Reveal>
         <h2 className="text-[#1a1a1a] font-extrabold text-3xl md:text-4xl mb-12 tracking-tight text-center relative z-10">
@@ -75,20 +73,20 @@ export function Solutions() {
         </h2>
       </Reveal>
 
-      <div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 relative z-10">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
         {solutions.map((sol) => (
           <motion.div
             whileHover={{ y: -8, scale: 1.02 }}
             key={sol.id}
             id={sol.id}
-            className="flex flex-row items-start p-8 rounded-[2rem] bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all group"
+            className="flex flex-col items-start p-7 md:p-8 rounded-[2rem] bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all group"
           >
-            <div className="w-12 h-12 bg-gray-50 text-gray-800 rounded-xl flex items-center justify-center flex-shrink-0 mr-5 border border-gray-100 group-hover:bg-black group-hover:text-white transition-colors">
+            <div className="w-12 h-12 bg-gray-50 text-gray-800 rounded-xl flex items-center justify-center flex-shrink-0 mb-5 border border-gray-100 group-hover:bg-black group-hover:text-white transition-colors">
               {sol.icon}
             </div>
             <div className="flex flex-col">
               <h3 className="font-bold text-[#1a1a1a] text-lg mb-2">{sol.title}</h3>
-              <p className="text-gray-500 font-medium text-sm leading-relaxed">
+              <p className="text-gray-500 font-medium text-[13px] leading-relaxed">
                 {sol.description}
               </p>
             </div>
