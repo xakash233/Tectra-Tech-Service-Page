@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, CheckCircle, ArrowRight } from 'lucide-react';
+import { Calendar, CheckCircle, ArrowRight, ArrowLeft } from 'lucide-react';
 import { CalendlyEmbed } from './ui/CalendlyEmbed';
 import { Lead101Widget } from './ui/Lead101Widget';
 
@@ -18,49 +18,57 @@ export function StickyForm() {
     }, []);
 
     return (
-        <div className="bg-white w-full p-5 sm:p-6 rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col relative overflow-hidden mt-0 lg:-ml-4 scale-[0.98]">
+        <div className="bg-white w-full p-4 sm:p-5 rounded-[1.5rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.06)] border border-gray-100 flex flex-col relative overflow-hidden mt-0 lg:ml-2 scale-[0.96]">
             {/* Trendy decorative background blobs */}
-            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-gradient-to-br from-gray-100 to-transparent blur-3xl opacity-60 pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-gradient-to-tr from-gray-50 to-transparent blur-3xl opacity-60 pointer-events-none"></div>
+            <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-gradient-to-br from-gray-100 to-transparent blur-3xl opacity-60 pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-48 h-48 rounded-full bg-gradient-to-tr from-gray-50 to-transparent blur-3xl opacity-60 pointer-events-none"></div>
 
             <div className="mx-auto w-full flex flex-col relative z-10">
-                <div className="mb-5 space-y-2">
+                <div className="mb-4 space-y-1.5">
                     <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-gray-50 border border-gray-100 mb-0 shadow-sm">
                         {step === 'calendly' ? (
-                            <Calendar size={12} className="text-gray-600" />
+                            <Calendar size={10} className="text-gray-600" />
                         ) : (
-                            <CheckCircle size={12} className="text-green-600" />
+                            <CheckCircle size={10} className="text-green-600" />
                         )}
-                        <span className="text-[10px] font-bold tracking-widest uppercase text-gray-600">
+                        <span className="text-[9px] font-bold tracking-widest uppercase text-gray-600">
                             {step === 'calendly' ? 'Step 1: Pick a Time' : 'Step 2: Admission Details'}
                         </span>
                     </div>
-                    <h2 className="text-[#1a1a1a] font-black text-2xl tracking-tight leading-[1.1]">
+                    <h2 className="text-[#1a1a1a] font-black text-xl tracking-tight leading-[1.1]">
                         {step === 'calendly' ? 'Ready to Increase Admissions?' : 'Booking Confirmed!'}
                     </h2>
-                    <p className="text-gray-500 text-[11px] leading-relaxed font-medium">
+                    <p className="text-gray-500 text-[10px] leading-relaxed font-medium">
                         {step === 'calendly'
                             ? "Book a free strategy consultation directly below. We'll audit your digital footprint."
                             : "Awesome! Please share a few more institution details to prepare your custom audit."}
                     </p>
                 </div>
 
-                <div className="min-h-[580px] transition-all duration-500">
+                <div className="min-h-[500px] transition-all duration-500">
                     {step === 'calendly' ? (
                         <div className="animate-in fade-in duration-700">
                             <CalendlyEmbed />
-                            <div className="mt-4 pt-4 border-t border-gray-50 text-center">
+                            <div className="mt-2 pt-2 border-t border-gray-50 text-center">
                                 <button
                                     onClick={() => setStep('lead101')}
-                                    className="text-[10px] font-bold text-gray-400 hover:text-black transition-colors uppercase tracking-widest flex items-center justify-center gap-2 mx-auto"
+                                    className="text-[9px] font-bold text-gray-400 hover:text-black transition-colors uppercase tracking-widest flex items-center justify-center gap-1.5 mx-auto"
                                 >
-                                    Already booked? Skip to details <ArrowRight size={10} />
+                                    Already booked? Skip to details <ArrowRight size={9} />
                                 </button>
                             </div>
                         </div>
                     ) : (
-                        <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                        <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 flex flex-col h-full">
                             <Lead101Widget />
+                            <div className="mt-auto pt-2 border-t border-gray-50 text-center">
+                                <button
+                                    onClick={() => setStep('calendly')}
+                                    className="text-[9px] font-bold text-gray-400 hover:text-black transition-colors uppercase tracking-widest flex items-center justify-center gap-1.5 mx-auto -mt-2"
+                                >
+                                    <ArrowLeft size={9} /> Go back to booking
+                                </button>
+                            </div>
                         </div>
                     )}
                 </div>

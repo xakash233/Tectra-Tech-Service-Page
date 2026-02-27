@@ -81,27 +81,7 @@ export function Hero() {
             </motion.a>
           </div>
 
-          {/* Trust line */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-4"
-          >
-            <div className="flex items-center gap-1" aria-hidden="true">
-              {[...Array(5)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 2, delay: i * 0.2, repeat: Infinity }}
-                  className="w-1.5 h-1.5 rounded-full bg-black"
-                />
-              ))}
-            </div>
-            <p className="text-[#666666] text-[15px]" style={{ fontWeight: 500 }}>
-              Trusted by <strong className="text-[#1a1a1a]">50+ Institutions</strong> across India
-            </p>
-          </motion.div>
+
         </div>
       </div>
     </section>

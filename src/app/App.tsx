@@ -44,7 +44,7 @@ export default function App() {
         </div>
 
         {/* Right Sticky Form - 30% floating */}
-        <aside className="w-full lg:w-[30%] lg:sticky lg:top-[72px] h-max bg-transparent flex-shrink-0 z-40 p-5 lg:p-0 lg:pr-6 mb-2">
+        <aside className="w-full lg:w-[30%] lg:sticky lg:top-[72px] h-max bg-transparent flex-shrink-0 z-40 p-5 lg:p-0 lg:pr-2 mb-2">
           <StickyForm />
         </aside>
       </main>

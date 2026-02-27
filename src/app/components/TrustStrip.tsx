@@ -1,55 +1,62 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Reveal } from './ui/Reveal';
 
-const institutions = [
-  { name: 'Sunrise Academy', abbr: 'SA' },
-  { name: 'EduTech Institute', abbr: 'ETI' },
-  { name: 'Global Learning Hub', abbr: 'GLH' },
-  { name: 'Apex University', abbr: 'AU' },
-  { name: 'BrightPath College', abbr: 'BPC' },
-  { name: 'MindCraft School', abbr: 'MCS' },
-  { name: 'Pinnacle Institute', abbr: 'PI' },
-  { name: 'Horizon Academy', abbr: 'HA' },
+interface Institution {
+  name: string;
+  logo: string;
+  scale?: number;
+}
+
+const institutions: Institution[] = [
+  { name: 'Manipal', logo: '/logo/Manipal SMALL.png' },
+  { name: 'SAS', logo: '/logo/SAS SMALL.png' },
+  { name: 'The Schram Academy', logo: '/logo/The Schram Academy SMALL.png' },
+  { name: 'The Sun Smart', logo: '/logo/The Sun Smart SMALL.png' },
+  { name: 'VMLS', logo: '/logo/VMLS SMALL.png' },
+  { name: 'VSEP', logo: '/logo/VSEP SMALL.png' },
+  { name: 'AVMC', logo: '/logo/AVMC SMALL.png', scale: 1.4 },
+  { name: 'National Institute', logo: '/logo/National Institute SMALL.png', scale: 1.5 },
 ];
 
 export function TrustStrip() {
   return (
     <section
       aria-label="Trusted by leading institutions"
-      className="border-y border-[#e5e5e5] bg-[#F5F5F5] py-12"
+      className="border-y border-[#e5e5e5] bg-[#F5F5F5] py-16"
     >
-      <div className="max-w-[1100px] mx-auto px-6">
-        <p
-          className="text-center text-[#666666] text-base md:text-lg tracking-widest uppercase mb-10"
-          style={{ fontWeight: 700, letterSpacing: '0.12em' }}
-        >
-          Trusted by 50+ Leading Institutions
-        </p>
+      <div className="max-w-[1200px] mx-auto px-6">
+        <Reveal>
+          <p
+            className="text-center text-[#666666] text-base md:text-lg tracking-widest uppercase mb-12"
+            style={{ fontWeight: 700, letterSpacing: '0.12em' }}
+          >
+            Trusted by Leading Institutions
+          </p>
+        </Reveal>
 
         <div
-          className="grid grid-cols-2 sm:grid-cols-4 gap-6 md:gap-8"
+          className="flex flex-wrap items-center justify-center gap-10 sm:gap-16 md:gap-20 lg:gap-24"
           role="list"
           aria-label="Client institutions"
         >
-          {institutions.map((inst) => (
-            <div
+          {institutions.map((inst, i) => (
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
               key={inst.name}
               role="listitem"
-              className="flex flex-col items-center justify-center py-5 px-4 bg-white border border-[#e5e5e5] min-h-[72px] rounded-3xl shadow-sm hover:shadow-md transition-shadow"
+              className="group flex items-center justify-center cursor-pointer perspective-1000"
             >
-              <span
-                className="text-[#1a1a1a] text-sm md:text-base tracking-widest uppercase block text-center"
-                style={{ fontWeight: 800, letterSpacing: '0.1em' }}
-                aria-label={inst.name}
-              >
-                {inst.abbr}
-              </span>
-              <span
-                className="text-[#999999] text-[13px] block text-center mt-1 hidden sm:block"
-                style={{ fontWeight: 400 }}
-              >
-                {inst.name}
-              </span>
-            </div>
+              <img
+                src={inst.logo}
+                alt={inst.name}
+                style={{ transform: inst.scale ? `scale(${inst.scale})` : undefined }}
+                className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-16 w-auto object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:!scale-[1.1] drop-shadow-sm"
+              />
+            </motion.div>
           ))}
         </div>
       </div>

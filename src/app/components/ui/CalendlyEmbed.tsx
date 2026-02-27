@@ -18,7 +18,7 @@ export function CalendlyEmbed() {
         <div
             className="calendly-inline-widget w-full"
             data-url={calendlyUrl}
-            style={{ minWidth: '320px', height: '580px' }}
+            style={{ minWidth: '320px', height: '500px' }}
         />
     );
 }
