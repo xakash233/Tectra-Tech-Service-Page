@@ -11,6 +11,7 @@ import { Testimonials } from './components/Testimonials';
 import { VideoSection } from './components/VideoSection';
 import { Founder } from './components/Founder';
 import { FAQ } from './components/FAQ';
+import { FinalCTA } from './components/FinalCTA';
 import { StickyForm } from './components/StickyForm';
 import { Footer } from './components/Footer';
 import { CustomCursor } from './components/ui/CustomCursor';
@@ -40,7 +41,6 @@ export default function App() {
           <VideoSection />
           <Founder />
           <FAQ />
-          {/* Note: FinalCTA is removed to avoid duplicating the form at the bottom */}
         </div>
 
         {/* Right Sticky Form - 30% floating */}

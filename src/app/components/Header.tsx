@@ -130,7 +130,14 @@ export function Header() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden flex items-center justify-center w-11 h-11 text-black -mr-2"
           >
-            {isMenuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+            {isMenuOpen ? (
+              <X size={22} aria-hidden="true" />
+            ) : (
+              <div className="flex flex-col gap-1.5 items-end pr-1" aria-hidden="true">
+                <span className="h-[2px] w-4 bg-black rounded-full transition-all"></span>
+                <span className="h-[2px] w-6 bg-black rounded-full transition-all"></span>
+              </div>
+            )}
           </button>
         </div>
       </div>

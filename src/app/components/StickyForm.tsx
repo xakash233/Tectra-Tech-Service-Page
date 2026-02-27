@@ -1,82 +1,152 @@
-import React, { useState, useEffect } from 'react';
-import { Calendar, CheckCircle, ArrowRight, ArrowLeft } from 'lucide-react';
-import { CalendlyEmbed } from './ui/CalendlyEmbed';
-import { Lead101Widget } from './ui/Lead101Widget';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { ArrowRight, Sparkles } from 'lucide-react';
+
+type FormData = {
+    fullName: string;
+    institutionName: string;
+    email: string;
+    phone: string;
+    message: string;
+};
 
 export function StickyForm() {
-    const [step, setStep] = useState<'calendly' | 'lead101'>('calendly');
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting, isSubmitSuccessful },
+        reset,
+    } = useForm<FormData>({ mode: 'onBlur' });
 
-    useEffect(() => {
-        function handleMessage(e: MessageEvent) {
-            // Listen for Calendly success event
-            if (e.data.event && e.data.event === 'calendly.event_scheduled') {
-                setStep('lead101');
-            }
-        }
-        window.addEventListener('message', handleMessage);
-        return () => window.removeEventListener('message', handleMessage);
-    }, []);
+    const onSubmit = async (data: FormData) => {
+        // Simulate async submission
+        await new Promise((resolve) => setTimeout(resolve, 800));
+        console.log('Form submitted:', data);
+
+        // Redirect to Calendly
+        window.open('https://calendly.com/heyswuu/new-meeting', '_blank');
+        reset();
+    };
 
     return (
-        <div className="bg-white w-full p-4 sm:p-5 rounded-[1.5rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.06)] border border-gray-100 flex flex-col relative overflow-hidden mt-0 lg:ml-2 scale-[0.96]">
+        <div className="bg-white w-full p-5 sm:p-6 rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col relative overflow-hidden mt-0 lg:-ml-4 scale-[0.98]">
             {/* Trendy decorative background blobs */}
-            <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-gradient-to-br from-gray-100 to-transparent blur-3xl opacity-60 pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-48 h-48 rounded-full bg-gradient-to-tr from-gray-50 to-transparent blur-3xl opacity-60 pointer-events-none"></div>
+            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-gradient-to-br from-gray-100 to-transparent blur-3xl opacity-60 pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-gradient-to-tr from-gray-50 to-transparent blur-3xl opacity-60 pointer-events-none"></div>
 
             <div className="mx-auto w-full flex flex-col relative z-10">
-                <div className="mb-4 space-y-1.5">
+                <div className="mb-5 space-y-2">
                     <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-gray-50 border border-gray-100 mb-0 shadow-sm">
-                        {step === 'calendly' ? (
-                            <Calendar size={10} className="text-gray-600" />
-                        ) : (
-                            <CheckCircle size={10} className="text-green-600" />
-                        )}
-                        <span className="text-[9px] font-bold tracking-widest uppercase text-gray-600">
-                            {step === 'calendly' ? 'Step 1: Pick a Time' : 'Step 2: Admission Details'}
-                        </span>
+                        <Sparkles size={12} className="text-gray-600" />
+                        <span className="text-[10px] font-bold tracking-widest uppercase text-gray-600">Get Started</span>
                     </div>
-                    <h2 className="text-[#1a1a1a] font-black text-xl tracking-tight leading-[1.1]">
-                        {step === 'calendly' ? 'Ready to Increase Admissions?' : 'Booking Confirmed!'}
+                    <h2 className="text-[#1a1a1a] font-black text-2xl tracking-tight leading-[1.1]">
+                        Ready to Increase Admissions?
                     </h2>
-                    <p className="text-gray-500 text-[10px] leading-relaxed font-medium">
-                        {step === 'calendly'
-                            ? "Book a free strategy consultation directly below. We'll audit your digital footprint."
-                            : "Awesome! Please share a few more institution details to prepare your custom audit."}
+                    <p className="text-gray-500 text-[11px] leading-relaxed font-medium">
+                        Book a free strategy consultation. We'll audit your current digital presence at no cost.
                     </p>
                 </div>
 
-                <div className="min-h-[500px] transition-all duration-500">
-                    {step === 'calendly' ? (
-                        <div className="animate-in fade-in duration-700">
-                            <CalendlyEmbed />
-                            <div className="mt-2 pt-2 border-t border-gray-50 text-center">
-                                <button
-                                    onClick={() => setStep('lead101')}
-                                    className="text-[9px] font-bold text-gray-400 hover:text-black transition-colors uppercase tracking-widest flex items-center justify-center gap-1.5 mx-auto"
-                                >
-                                    Already booked? Skip to details <ArrowRight size={9} />
-                                </button>
-                            </div>
+                {isSubmitSuccessful ? (
+                    <div className="text-center py-12 animate-in fade-in duration-700">
+                        <div className="w-14 h-14 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-inner">
+                            <span className="text-xl font-bold">✓</span>
                         </div>
-                    ) : (
-                        <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 flex flex-col h-full">
-                            <Lead101Widget />
-                            <div className="mt-auto pt-2 border-t border-gray-50 text-center">
-                                <button
-                                    onClick={() => setStep('calendly')}
-                                    className="text-[9px] font-bold text-gray-400 hover:text-black transition-colors uppercase tracking-widest flex items-center justify-center gap-1.5 mx-auto -mt-2"
-                                >
-                                    <ArrowLeft size={9} /> Go back to booking
-                                </button>
+                        <h3 className="text-lg font-bold text-gray-900 mb-1">Consultation Booked</h3>
+                        <p className="text-gray-500 text-xs px-6 leading-relaxed font-medium">
+                            Thank you. Our senior strategist will be in touch within 24 hours.
+                        </p>
+                    </div>
+                ) : (
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        noValidate
+                        className="flex flex-col gap-4 relative"
+                    >
+                        <div className="space-y-3">
+                            <div className="relative group">
+                                <label htmlFor="fullName" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight">Full Name</label>
+                                <input
+                                    id="fullName"
+                                    type="text"
+                                    placeholder="e.g. Dr. Rajesh Sharma"
+                                    className={`w-full h-10 px-4 rounded-xl bg-gray-50/50 border transition-all duration-300 outline-none focus:bg-white text-xs ${errors.fullName ? 'border-red-200 focus:border-red-400 ring-2 ring-red-50' : 'border-gray-200 focus:border-gray-900 ring-2 ring-transparent focus:ring-gray-100 text-gray-900 placeholder:text-gray-400'}`}
+                                    {...register('fullName', { required: 'Name is required' })}
+                                />
+                                {errors.fullName && <p className="text-red-500 text-[10px] font-medium mt-1 ml-1">{errors.fullName.message}</p>}
                             </div>
-                        </div>
-                    )}
-                </div>
 
-                <p className="text-gray-400 text-center mt-4 text-[10px] font-medium flex items-center justify-center gap-1.5 leading-none">
-                    <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"></path></svg>
-                    100% Secure. Confidential.
-                </p>
+                            <div className="relative group">
+                                <label htmlFor="institutionName" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight">Institution Name</label>
+                                <input
+                                    id="institutionName"
+                                    type="text"
+                                    placeholder="e.g. Stanford University"
+                                    className={`w-full h-10 px-4 rounded-xl bg-gray-50/50 border transition-all duration-300 outline-none focus:bg-white text-xs ${errors.institutionName ? 'border-red-200 focus:border-red-400 ring-2 ring-red-50' : 'border-gray-200 focus:border-gray-900 ring-2 ring-transparent focus:ring-gray-100 text-gray-900 placeholder:text-gray-400'}`}
+                                    {...register('institutionName', { required: 'Institution is required' })}
+                                />
+                                {errors.institutionName && <p className="text-red-500 text-[10px] font-medium mt-1 ml-1">{errors.institutionName.message}</p>}
+                            </div>
+
+                            <div className="relative group">
+                                <label htmlFor="email" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight">Work Email</label>
+                                <input
+                                    id="email"
+                                    type="email"
+                                    placeholder="you@institution.edu"
+                                    className={`w-full h-10 px-4 rounded-xl bg-gray-50/50 border transition-all duration-300 outline-none focus:bg-white text-xs ${errors.email ? 'border-red-200 focus:border-red-400 ring-2 ring-red-50' : 'border-gray-200 focus:border-gray-900 ring-2 ring-transparent focus:ring-gray-100 text-gray-900 placeholder:text-gray-400'}`}
+                                    {...register('email', {
+                                        required: 'Email is required',
+                                        pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Valid email required' }
+                                    })}
+                                />
+                                {errors.email && <p className="text-red-500 text-[10px] font-medium mt-1 ml-1">{errors.email.message}</p>}
+                            </div>
+
+                            <div className="relative group">
+                                <label htmlFor="phone" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight">Phone Number</label>
+                                <input
+                                    id="phone"
+                                    type="tel"
+                                    placeholder="+91 98765 43210"
+                                    className={`w-full h-10 px-4 rounded-xl bg-gray-50/50 border transition-all duration-300 outline-none focus:bg-white text-xs ${errors.phone ? 'border-red-200 focus:border-red-400 ring-2 ring-red-50' : 'border-gray-200 focus:border-gray-900 ring-2 ring-transparent focus:ring-gray-100 text-gray-900 placeholder:text-gray-400'}`}
+                                    {...register('phone', { required: 'Phone is required' })}
+                                />
+                                {errors.phone && <p className="text-red-500 text-[10px] font-medium mt-1 ml-1">{errors.phone.message}</p>}
+                            </div>
+
+                            <div className="relative group">
+                                <label htmlFor="message" className="block text-[10px] font-bold text-gray-600 mb-1 transition-colors group-focus-within:text-black uppercase tracking-tight">Your Message</label>
+                                <textarea
+                                    id="message"
+                                    placeholder="Which programmes do you want to grow?"
+                                    rows={3}
+                                    className={`w-full px-4 py-3 rounded-xl bg-gray-50/50 border transition-all duration-300 outline-none focus:bg-white text-xs resize-none ${errors.message ? 'border-red-200 focus:border-red-400 ring-2 ring-red-50' : 'border-gray-200 focus:border-gray-900 ring-2 ring-transparent focus:ring-gray-100 text-gray-900 placeholder:text-gray-400'}`}
+                                    {...register('message', { required: 'Message is required' })}
+                                />
+                                {errors.message && <p className="text-red-500 text-[10px] font-medium mt-1 ml-1">{errors.message.message}</p>}
+                            </div>
+                        </div>
+
+                        <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="w-full h-12 mt-2 rounded-[1rem] flex items-center justify-center gap-2 bg-gradient-to-r from-gray-900 to-black text-white hover:from-black hover:to-gray-800 disabled:opacity-70 transition-all duration-300 shadow-lg shadow-gray-900/10 hover:shadow-xl hover:-translate-y-0.5"
+                        >
+                            <span className="font-bold text-xs tracking-wide">Secure Strategy Call</span>
+                            {isSubmitting ? (
+                                <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            ) : (
+                                <ArrowRight size={14} />
+                            )}
+                        </button>
+                        <p className="text-gray-400 text-center mt-1 text-[10px] font-medium flex items-center justify-center gap-1.5 leading-none">
+                            <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"></path></svg>
+                            100% Secure. Confidential.
+                        </p>
+                    </form>
+                )}
             </div>
         </div>
     );
