@@ -1,9 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export function Lead101Widget() {
+    const containerRef = useRef<HTMLDivElement>(null);
     const widgetCode = import.meta.env.VITE_LEAD101_WIDGET_CODE || 'EA06E8D59DC3';
 
     useEffect(() => {
+        if (!containerRef.current) return;
+
+        // Clear previous content
+        containerRef.current.innerHTML = '';
+
         const script = document.createElement('script');
         script.src = `https://thelead101.com/widgets/${widgetCode}/widget.js`;
         script.setAttribute('data-widget-code', widgetCode);
@@ -14,12 +20,22 @@ export function Lead101Widget() {
         script.setAttribute('data-border-radius', '16px');
         script.setAttribute('data-shadow', 'none');
         script.async = true;
-        document.body.appendChild(script);
+
+        // Append inside the specific div
+        containerRef.current.appendChild(script);
 
         return () => {
-            document.body.removeChild(script);
+            if (containerRef.current) {
+                containerRef.current.innerHTML = '';
+            }
         };
     }, [widgetCode]);
 
-    return <div id={widgetCode} className="w-full min-h-[600px]" />;
+    return (
+        <div
+            ref={containerRef}
+            id={widgetCode}
+            className="w-full min-h-[600px]"
+        />
+    );
 }
