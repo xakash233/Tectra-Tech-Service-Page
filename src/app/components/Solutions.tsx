@@ -9,7 +9,8 @@ import {
   CheckCircle2,
   Cloud,
   Settings,
-  Trophy
+  Trophy,
+  Lightbulb
 } from 'lucide-react';
 
 export function Solutions() {
@@ -68,9 +69,20 @@ export function Solutions() {
     <section id="services" className="bg-white py-12 px-6 flex flex-col items-center relative overflow-hidden">
 
       <Reveal>
-        <h2 className="text-[#1a1a1a] font-extrabold text-3xl md:text-4xl mb-12 tracking-tight text-center relative z-10">
-          Solutions That Drive Results
-        </h2>
+        <div className="flex flex-col items-center gap-3 mb-10 group cursor-default">
+          <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 group-hover:bg-black group-hover:text-white transition-all duration-300 border border-gray-100 group-hover:rotate-[30deg]">
+            <Lightbulb size={20} />
+          </div>
+          <p
+            className="text-[#666666] tracking-[0.2em] uppercase text-[12px] md:text-[13px] group-hover:text-black transition-colors duration-300"
+            style={{ fontWeight: 800 }}
+          >
+            Full Suite Services
+          </p>
+          <h2 className="text-[#1a1a1a] font-extrabold text-[28px] md:text-[38px] tracking-tight text-center relative z-10 mt-2">
+            Solutions That Drive Results
+          </h2>
+        </div>
       </Reveal>
 
       <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Reveal } from './ui/Reveal';
-import { TrendingDown, Eye, DollarSign, UserX } from 'lucide-react';
+import { TrendingDown, Eye, DollarSign, UserX, Target } from 'lucide-react';
 
 const problems = [
   {
@@ -43,12 +43,17 @@ export function Problem() {
       <div className="relative z-10 w-full">
         <div className="max-w-[680px] mb-8 md:mb-12">
           <Reveal>
-            <p
-              className="text-[#666666] uppercase tracking-widest text-base md:text-lg mb-8"
-              style={{ fontWeight: 700, letterSpacing: '0.12em' }}
-            >
-              The Challenge
-            </p>
+            <div className="flex items-center gap-3 mb-6 group cursor-default">
+              <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 group-hover:bg-black group-hover:text-white transition-all duration-300 border border-gray-100 group-hover:-rotate-12">
+                <Target size={20} />
+              </div>
+              <p
+                className="text-[#666666] tracking-[0.2em] uppercase text-[12px] md:text-[13px] group-hover:text-black transition-colors duration-300"
+                style={{ fontWeight: 800 }}
+              >
+                The Challenge
+              </p>
+            </div>
           </Reveal>
           <Reveal>
             <h2

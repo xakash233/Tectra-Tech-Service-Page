@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="bg-white py-12 md:py-20 relative overflow-hidden"
+      className="bg-white pt-0 pb-12 md:pt-2 md:pb-20 relative overflow-hidden"
     >
       {/* Background Tech Elements */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
@@ -24,12 +24,17 @@ export function Hero() {
         <div className="max-w-[780px]">
           {/* Eyebrow */}
           <Reveal>
-            <p
-              className="text-[#666666] tracking-widest uppercase text-base md:text-lg mb-8"
-              style={{ fontWeight: 700, letterSpacing: '0.12em' }}
-            >
-              Education-Focused Digital Marketing
-            </p>
+            <div className="flex items-center gap-3 mb-6 group cursor-default">
+              <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 group-hover:bg-black group-hover:text-white transition-all duration-300 border border-gray-100 group-hover:rotate-12">
+                <ArrowRight size={20} className="-rotate-45" />
+              </div>
+              <p
+                className="text-[#666666] tracking-[0.2em] uppercase text-[12px] md:text-[13px] group-hover:text-black transition-colors duration-300"
+                style={{ fontWeight: 800 }}
+              >
+                Education-Focused Digital Marketing
+              </p>
+            </div>
           </Reveal>
 
           {/* H1 */}
@@ -59,15 +64,14 @@ export function Hero() {
           </Reveal>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row gap-3 mb-8 relative z-20">
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="https://calendly.com/d/ctnd-5kd-yzk/1-1-scale-your-business"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-black text-white px-8 min-h-[52px] hover:bg-[#1a1a1a] transition-colors duration-150 gap-2 font-bold"
-              style={{ fontSize: '1rem' }}
+              className="inline-flex items-center justify-center bg-black text-white px-6 py-3.5 md:px-8 md:py-4 rounded-full text-sm md:text-base font-bold shadow-lg hover:shadow-black/20 transition-all gap-2"
             >
               Book Free Consultation
               <ArrowRight size={18} aria-hidden="true" />
@@ -76,8 +80,7 @@ export function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="#case-studies"
-              className="inline-flex items-center justify-center border border-black text-black px-8 min-h-[52px] hover:bg-black hover:text-white transition-colors duration-150 gap-2 font-bold"
-              style={{ fontSize: '1rem' }}
+              className="inline-flex items-center justify-center border border-black/10 text-black px-6 py-3.5 md:px-8 md:py-4 rounded-full text-sm md:text-base font-bold hover:bg-black hover:text-white transition-all gap-2"
             >
               View Case Studies
             </motion.a>

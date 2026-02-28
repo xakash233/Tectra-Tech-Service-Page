@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, ArrowRight, Linkedin, Instagram } from 'lucide-react';
+import { MapPin, ArrowRight, Linkedin, Instagram, Youtube } from 'lucide-react';
 
 // Custom X (formerly Twitter) icon component
 const XIcon = ({ size = 20 }: { size?: number }) => (
@@ -51,6 +51,7 @@ export function Footer() {
                 src="/tectra-logo-black.png"
                 alt="Tectra Technologies"
                 className="h-8 w-auto invert"
+                style={{ filter: 'contrast(1.3) brightness(1.2)' }}
               />
             </a>
             <p
@@ -202,6 +203,15 @@ export function Footer() {
               aria-label="Instagram"
             >
               <Instagram size={20} />
+            </a>
+            <a
+              href="https://www.youtube.com/channel/UCl1z7tJvWSoMxCTSVgXNv4w"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#999999] hover:text-[#FF0000] transition-colors"
+              aria-label="YouTube"
+            >
+              <Youtube size={22} />
             </a>
           </div>
         </div>

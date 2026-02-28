@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Users } from 'lucide-react';
 import { Reveal } from './ui/Reveal';
 
 interface Institution {
@@ -19,62 +20,50 @@ const institutions: Institution[] = [
 ];
 
 export function TrustStrip() {
-  const [isPaused, setIsPaused] = useState(false);
-
-  // Duplicate logos for seamless scrolling
-  const allLogos = [...institutions, ...institutions];
-
   return (
     <section
       aria-label="Trusted by leading institutions"
-      className="bg-white py-12 overflow-hidden"
+      className="bg-white py-16"
     >
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .marquee-container {
-          display: flex;
-          width: max-content;
-          animation: marquee 40s linear infinite;
-        }
-        .marquee-paused {
-          animation-play-state: paused;
-        }
-      `}</style>
-
-      <div className="relative z-10 max-w-[1230px] mx-auto px-6 mb-8">
-        <Reveal>
-          <p
-            className="text-center text-black text-[14px] md:text-[15px] tracking-[0.3em] uppercase"
-            style={{ fontWeight: 900 }}
-          >
-            Our Trusted Institutional Partners
-          </p>
-        </Reveal>
-      </div>
-
-      <div
-        className="relative flex overflow-hidden py-4"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
-        <div
-          className={`marquee-container ${isPaused ? 'marquee-paused' : ''} flex flex-nowrap items-center gap-12 md:gap-20 px-10`}
-        >
-          {allLogos.map((inst, i) => (
-            <div
-              key={`${inst.name}-${i}`}
-              className="flex items-center justify-center grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300 transform hover:scale-110 flex-shrink-0"
-            >
-              <img
-                src={inst.logo}
-                alt={inst.name}
-                style={{ transform: inst.scale ? `scale(${inst.scale * 1.1})` : 'scale(1.1)' }}
-                className="h-10 md:h-14 w-auto object-contain"
-              />
+      <div className="max-w-[1230px] mx-auto px-6">
+        <div className="mb-16 space-y-10">
+          <Reveal>
+            <div className="flex flex-col items-center justify-center gap-3 group cursor-default w-full">
+              <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 group-hover:bg-black group-hover:text-white transition-all duration-300 border border-gray-100 group-hover:rotate-12">
+                <Users size={20} />
+              </div>
+              <p className="text-center text-black text-[12px] md:text-[13px] tracking-[0.3em] uppercase transition-colors duration-300"
+                style={{ fontWeight: 900 }}
+              >
+                OUR CLIENTS
+              </p>
             </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="text-left w-full">
+              <h2 className="text-[#666666] font-medium text-[24px] md:text-[20px] tracking-tight leading-tight max-w-xl">
+                Trusted Institutional Partners
+              </h2>
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-16 items-center">
+          {institutions.map((inst, i) => (
+            <Reveal key={`${inst.name}-${i}`}>
+              <div className="flex items-center justify-center grayscale opacity-95 hover:grayscale-0 hover:opacity-100 transition-all duration-300 transform hover:scale-105">
+                <img
+                  src={inst.logo}
+                  alt={inst.name}
+                  style={{
+                    transform: inst.scale ? `scale(${inst.scale * 1.15})` : 'scale(1.70)',
+                    filter: 'contrast(1.2) brightness(1.1)'
+                  }}
+                  className="h-14 md:h-20 w-auto object-contain"
+                />
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>

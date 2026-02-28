@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight, Quote, Instagram, Linkedin } from 'lucide-react';
 
@@ -43,7 +43,7 @@ const employees = [
     image: "/employee/vishwa seo.png"
   },
   {
-    name: "Jane",
+    name: "Jane Dezuza",
     designation: "Graphic Designer",
     quote: "Visualizing excellence through clean, modern, and impactful design.",
     bio: "Jane brings your brand to life with stunning visuals, ensuring every marketing touchpoint reflects the premium quality of your institution.",
@@ -82,6 +82,7 @@ const employees = [
 export function Founder() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const slideVariants = {
     enter: (direction: number) => ({
@@ -103,25 +104,31 @@ export function Founder() {
     })
   };
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % employees.length);
-  };
+  }, []);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + employees.length) % employees.length);
-  };
+  }, []);
 
-  const setIndex = (index: number) => {
-    setDirection(index > currentIndex ? 1 : -1);
-    setCurrentIndex(index);
-  };
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setInterval(() => {
+      handleNext();
+    }, 15000); // 15 seconds
+
+    return () => clearInterval(timer);
+  }, [handleNext, isPaused]);
 
   const current = employees[currentIndex];
 
   return (
-    <section className="bg-white py-12 px-6 overflow-hidden relative">
+    <section className="bg-white py-12 px-6 overflow-hidden relative" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
       {/* Tech Grid Background */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
 
@@ -259,19 +266,6 @@ export function Founder() {
           </div>
         </div>
 
-        {/* Thumbnail Progress Bar - More compact */}
-        <div className="flex flex-wrap justify-center gap-2 mt-12 max-w-xl mx-auto px-4">
-          {employees.map((emp, i) => (
-            <button
-              key={emp.name}
-              onClick={() => setIndex(i)}
-              className={`relative overflow-hidden group h-10 rounded-lg transition-all duration-500 ${currentIndex === i ? 'w-20' : 'w-10 opacity-40 hover:opacity-100'}`}
-            >
-              <img src={emp.image} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-              <div className={`absolute inset-0 border-2 rounded-lg transition-colors ${currentIndex === i ? 'border-black' : 'border-transparent'}`}></div>
-            </button>
-          ))}
-        </div>
       </div>
     </section>
   );

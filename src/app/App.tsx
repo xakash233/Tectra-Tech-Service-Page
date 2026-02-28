@@ -1,4 +1,5 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { TrustStrip } from './components/TrustStrip';
@@ -13,10 +14,13 @@ import { Founder } from './components/Founder';
 import { FAQ } from './components/FAQ';
 import { StickyForm } from './components/StickyForm';
 import { Footer } from './components/Footer';
+import { FloatingNavigator } from './components/FloatingNavigator';
+import { VMLSBlog } from './pages/VMLSBlog';
 
-export default function App() {
+function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
+      <FloatingNavigator />
       {/* Skip to main content – screen reader / keyboard accessibility */}
       <a href="#main-content" className="skip-link sr-only focus:not-sr-only">
         Skip to main content
@@ -24,21 +28,21 @@ export default function App() {
 
       <Header />
 
-      <main id="main-content" tabIndex={-1} className="flex-1 max-w-[1230px] mx-auto w-full px-6 py-8">
+      <main id="main-content" tabIndex={-1} className="flex-1 max-w-[1230px] mx-auto w-full px-6 pt-4 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12 items-start">
           {/* Left Main Content */}
           <div className="bg-white min-w-0">
             <Hero />
-            <TrustStrip />
-            <Problem />
-            <Solutions />
-            <Stats />
-            <CaseStudies />
-            <GrowthFramework />
+            <div id="partners"><TrustStrip /></div>
             <Testimonials />
+            <div id="problem"><Problem /></div>
+            <div id="solutions"><Solutions /></div>
+            <div id="stats"><Stats /></div>
+            <CaseStudies />
+            <div id="process"><GrowthFramework /></div>
             <VideoSection />
             <Founder />
-            <FAQ />
+            <div id="faq"><FAQ /></div>
           </div>
 
           {/* Right Sticky Form */}
@@ -48,7 +52,7 @@ export default function App() {
         </div>
 
         {/* Mobile Sticky Form - only visible on small screens at the bottom or inline */}
-        <div className="lg:hidden mt-12">
+        <div id="mobile-book-section" className="lg:hidden mt-12">
           <StickyForm />
         </div>
       </main>
@@ -58,5 +62,14 @@ export default function App() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/blogs/vmls" element={<VMLSBlog />} />
+    </Routes>
   );
 }

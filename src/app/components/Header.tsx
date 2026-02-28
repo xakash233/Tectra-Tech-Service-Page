@@ -67,6 +67,7 @@ export function Header() {
               src="/tectra-logo-black.png"
               alt="Tectra Technologies"
               className="h-8 md:h-10 w-auto"
+              style={{ filter: 'contrast(1.2) brightness(1.05)' }}
             />
           </a>
 
@@ -122,25 +123,34 @@ export function Header() {
             Book Strategy Call
           </a>
 
-          {/* Mobile Menu Button */}
-          <button
-            ref={menuButtonRef}
-            type="button"
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-menu"
-            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden flex items-center justify-center w-11 h-11 text-black -mr-2"
-          >
-            {isMenuOpen ? (
-              <X size={22} aria-hidden="true" />
-            ) : (
-              <div className="flex flex-col gap-1.5 items-end pr-1" aria-hidden="true">
-                <span className="h-[2px] w-4 bg-black rounded-full transition-all"></span>
-                <span className="h-[2px] w-6 bg-black rounded-full transition-all"></span>
-              </div>
-            )}
-          </button>
+          {/* Mobile Let's Talk & Menu Button */}
+          <div className="md:hidden flex items-center gap-3">
+            <a
+              href="#mobile-book-section"
+              className="inline-flex items-center justify-center bg-black text-white px-4 py-2 rounded-full text-[12px] font-bold shadow-sm"
+            >
+              Let's Talk
+            </a>
+
+            <button
+              ref={menuButtonRef}
+              type="button"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="flex items-center justify-center w-11 h-11 text-black -mr-1"
+            >
+              {isMenuOpen ? (
+                <X size={22} aria-hidden="true" />
+              ) : (
+                <div className="flex flex-col gap-1.5 items-end pr-1" aria-hidden="true">
+                  <span className="h-[2px] w-4 bg-black rounded-full transition-all"></span>
+                  <span className="h-[2px] w-6 bg-black rounded-full transition-all"></span>
+                </div>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Reveal } from './ui/Reveal';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export function CaseStudies() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -11,10 +12,11 @@ export function CaseStudies() {
     {
       title: "VMLS",
       description: "Generated Over 20,000 Leads for Career Courses",
-      image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/images/vmls-2.jpg.jpeg",
       logo: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=100&q=80",
       metric: "+20,000 Leads",
-      color: "text-purple-600 border-purple-200"
+      color: "text-purple-600 border-purple-200",
+      pdfLink: "/blogs/vmls"
     },
     {
       title: "VSEP",
@@ -106,15 +108,33 @@ export function CaseStudies() {
             >
               <div className="flex flex-col rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-[0_4px_32px_-12px_rgba(0,0,0,0.1)] transition-all bg-white pb-6 h-full p-4 group">
                 {/* Image section - Optimized Height */}
-                <div className="w-full h-[240px] sm:h-[300px] overflow-hidden rounded-[1.5rem] relative">
+                <Link
+                  to={cs.pdfLink || '#'}
+                  target={cs.pdfLink?.startsWith('/') ? undefined : "_blank"}
+                  rel={cs.pdfLink?.startsWith('/') ? undefined : "noopener noreferrer"}
+                  className={`w-full h-[240px] sm:h-[300px] overflow-hidden rounded-[1.5rem] relative ${cs.pdfLink ? 'cursor-pointer hover:opacity-90 transition-opacity' : 'cursor-default'}`}
+                >
                   <img src={cs.image} alt={cs.title} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-black/5"></div>
-                </div>
+                  {cs.pdfLink && (
+                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-black shadow-sm flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                      <ChevronRight size={12} />
+                      Read Case Study
+                    </div>
+                  )}
+                </Link>
 
                 {/* Content section */}
                 <div className="pt-5 px-6 flex-1 flex flex-col items-start text-left">
                   <div className="flex items-center justify-between w-full mb-3">
-                    <h3 className="font-bold text-[#1a1a1a] text-xl tracking-tight leading-none">{cs.title}</h3>
+                    <Link
+                      to={cs.pdfLink || '#'}
+                      target={cs.pdfLink?.startsWith('/') ? undefined : "_blank"}
+                      rel={cs.pdfLink?.startsWith('/') ? undefined : "noopener noreferrer"}
+                      className={`font-bold text-[#1a1a1a] text-xl tracking-tight leading-none hover:text-black transition-colors ${cs.pdfLink ? 'cursor-pointer' : 'cursor-default'}`}
+                    >
+                      {cs.title}
+                    </Link>
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       className={`px-3 py-1 rounded-full border ${cs.color} bg-white flex items-center justify-center font-bold text-[10px] sm:text-xs shadow-sm`}
@@ -126,6 +146,19 @@ export function CaseStudies() {
                   <p className="text-gray-600 text-[14px] sm:text-base font-medium leading-normal mb-5">
                     {cs.description}
                   </p>
+
+                  {/* Read More / PDF Link Action */}
+                  {cs.pdfLink && (
+                    <Link
+                      to={cs.pdfLink}
+                      target={cs.pdfLink?.startsWith('/') ? undefined : "_blank"}
+                      rel={cs.pdfLink?.startsWith('/') ? undefined : "noopener noreferrer"}
+                      className="inline-flex items-center gap-2 text-black font-black text-[12px] uppercase tracking-widest hover:gap-3 transition-all mb-6 group/btn"
+                    >
+                      Read Full Case Study
+                      <ChevronRight size={14} className="text-black transition-transform group-hover/btn:translate-x-0.5" />
+                    </Link>
+                  )}
 
                   {/* Bottom tag section */}
                   <div className="flex items-center gap-3 w-full mt-auto">
