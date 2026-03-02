@@ -19,7 +19,7 @@ import { VMLSBlog } from './pages/VMLSBlog';
 
 function Home() {
   return (
-    <div className="flex flex-col min-h-screen relative">
+    <div className="flex flex-col min-h-screen relative overflow-x-clip w-full max-w-[100vw]">
       <FloatingNavigator />
       {/* Skip to main content – screen reader / keyboard accessibility */}
       <a href="#main-content" className="skip-link sr-only focus:not-sr-only">
