@@ -16,7 +16,7 @@ export function CaseStudies() {
       logo: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=100&q=80",
       metric: "+20,000 Leads",
       color: "text-purple-600 border-purple-200",
-      pdfLink: "/casestudy/vmls"
+      pdfLink: "/case-study/vmls"
     },
     {
       title: "VSEP",
