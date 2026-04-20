@@ -19,7 +19,7 @@ import { VMLSBlog } from './pages/VMLSBlog';
 
 function Home() {
   return (
-    <div className="flex flex-col min-h-screen relative overflow-x-clip w-full max-w-[100vw]">
+    <div className="flex flex-col min-h-screen relative w-full max-w-[100vw]">
       <FloatingNavigator />
       {/* Skip to main content – screen reader / keyboard accessibility */}
       <a href="#main-content" className="skip-link sr-only focus:not-sr-only">
@@ -28,8 +28,12 @@ function Home() {
 
       <Header />
 
+      <div className="md:hidden sticky top-[72px] z-40 px-6 pt-3">
+        <StickyForm />
+      </div>
+
       <main id="main-content" tabIndex={-1} className="flex-1 max-w-[1230px] mx-auto w-full px-6 pt-4 pb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_360px] lg:grid-cols-[1fr_380px] gap-8 lg:gap-12 items-start">
           {/* Left Main Content */}
           <div className="bg-white min-w-0">
             <Hero />
@@ -46,15 +50,11 @@ function Home() {
           </div>
 
           {/* Right Sticky Form */}
-          <aside className="hidden lg:block sticky top-[80px] h-max z-40">
+          <aside className="hidden md:block md:sticky md:top-[88px] md:self-start md:justify-self-start w-full max-w-[380px] h-max z-40">
             <StickyForm />
           </aside>
         </div>
 
-        {/* Mobile Sticky Form - only visible on small screens at the bottom or inline */}
-        <div id="mobile-book-section" className="lg:hidden mt-12">
-          <StickyForm />
-        </div>
       </main>
 
       {/* Contact anchor at the very bottom */}
@@ -69,7 +69,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/blogs/vmls" element={<VMLSBlog />} />
+      <Route path="/casestudy/vmls" element={<VMLSBlog />} />
     </Routes>
   );
 }

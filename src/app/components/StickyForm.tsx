@@ -31,7 +31,7 @@ export function StickyForm() {
             <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-gradient-to-tr from-gray-50 to-transparent blur-3xl opacity-60 pointer-events-none"></div>
 
             <div className="mx-auto w-full flex flex-col relative z-10">
-                <div className="mb-5 space-y-2">
+                <div className="mb-5 space-y-2 text-left">
                     <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-gray-50 border border-gray-100 mb-0 shadow-sm">
                         <Sparkles size={12} className="text-gray-600" />
                         <span className="text-[10px] font-bold tracking-widest uppercase text-gray-600">Get Started</span>

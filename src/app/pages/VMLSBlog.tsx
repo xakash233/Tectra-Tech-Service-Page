@@ -550,13 +550,29 @@ export function VMLSBlog() {
             </div>
 
             {/* Print-Style Logo Header */}
-            <div className="bg-white pt-2 pb-1 px-6 relative">
+            <div className="bg-white pt-3 pb-2 px-6 relative border-b border-gray-100">
                 <div className="max-w-[1230px] mx-auto">
-                    <div className="flex items-center justify-between mb-3 h-12 md:h-16">
-                        <img src="/case-study/Tectra Serve Logo (1).png" alt="Tectra Serve" className="h-full object-contain origin-left scale-125 md:scale-150" />
-                        <a href="https://vmls.edu.in/" target="_blank" rel="noopener noreferrer" className="h-full block">
-                            <img src="/case-study/VMLS LOGO - Maroon.png" alt="VMLS Logo" className="h-full object-contain origin-right scale-150 md:scale-350" />
-                        </a>
+                    <div className="flex flex-wrap items-center justify-between gap-4 mb-3 min-h-[72px] md:min-h-[96px]">
+                        <img src="/case-study/Tectra Serve Logo (1).png" alt="Tectra Serve" className="h-[44px] md:h-[58px] w-auto object-contain origin-left" />
+                        <div className="flex items-center gap-4 md:gap-6">
+                            <a href="https://vmls.edu.in/" target="_blank" rel="noopener noreferrer" className="block">
+                                <img src="/case-study/VMLS LOGO - Maroon.png" alt="OP Jindal Global University / VMLS Logo" className="h-[56px] md:h-[82px] w-auto object-contain" />
+                            </a>
+                            <div className="text-right leading-tight">
+                                <a
+                                    href="mailto:admissions@vmls.edu.in"
+                                    className="block text-[13px] md:text-[16px] font-semibold text-[#1a1a1a] hover:opacity-75 transition-opacity"
+                                >
+                                    admissions@vmls.edu.in
+                                </a>
+                                <a
+                                    href="tel:+917358201234"
+                                    className="block mt-1 text-[13px] md:text-[16px] font-semibold text-[#1a1a1a] hover:opacity-75 transition-opacity"
+                                >
+                                    +91 7358201234
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     {/* Dark underline spanning the exact width of the logos */}
                     <div className="w-full h-[3px] bg-[#1a1a1a] rounded-full"></div>
